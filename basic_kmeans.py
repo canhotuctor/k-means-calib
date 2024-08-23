@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import time
 
 # Load and convert the image
-img = cv2.imread("./few_pixels.png")
+img = cv2.imread("./normal_field.jpg")
 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
 # Reshape the image to a 2D array of RGB values
@@ -14,7 +14,7 @@ pixels = img.reshape(-1, 3)
 distances = np.linalg.norm(pixels - np.mean(pixels, axis=1, keepdims=True), axis=1)
 
 # Filter out pixels close to the black-white diagonal
-threshold = 25 # Adjust this value as needed
+threshold = 30 # Adjust this value as needed
 mask = distances > threshold
 filtered_pixels = pixels[mask]
 
@@ -26,7 +26,7 @@ unique_pixels = np.float32(unique_pixels)
 
 # Define criteria and apply k-means
 criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 10, 1.0)
-K = 7  # Number of clusters desired
+K = 9  # Number of clusters desired
 attempts = 10
 aa = time.time()
 ret, label, center = cv2.kmeans(unique_pixels, K, None, criteria, attempts, cv2.KMEANS_PP_CENTERS)

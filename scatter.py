@@ -15,7 +15,7 @@ pixels = img.reshape(-1, 3)  # Flatten the image, keeping the RGB channels toget
 distances = np.linalg.norm(pixels - np.mean(pixels, axis=1, keepdims=True), axis=1)
 
 # Filter out pixels close to the black-white diagonal
-threshold = 35  # Adjust this value as needed
+threshold = 40  # Adjust this value as needed
 mask = distances > threshold
 pixels = pixels[mask]
 
