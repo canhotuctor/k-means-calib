@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Example cluster centroids (RGB format) from your clustering algorithm
+# Example gathered cluster centroids (RGB format) from
 cluster_centroids = np.array([
     [128, 128, 128],  # Example centroid 1
     [60, 179, 113],   # Example centroid 2
@@ -12,15 +12,15 @@ cluster_centroids = np.array([
     [255, 255, 0]     # Example centroid 7
 ])
 
-# Define known representative colors for your output classes
+# Defining known representations of the desired colors
 output_classes_colors = np.array([
-    [135, 206, 250],  # Sky
-    [34, 139, 34],    # Vegetation
-    [70, 130, 180],   # Water
-    [169, 169, 169],  # Buildings
-    [128, 128, 0],    # Road
-    [255, 255, 255],  # Snow/Ice
-    [255, 165, 0]     # Desert/Sand
+    [135, 206, 250],
+    [34, 139, 34],
+    [70, 130, 180],
+    [169, 169, 169],
+    [128, 128, 0],
+    [255, 255, 255],
+    [255, 165, 0]
 ])
 
 # Compute Euclidean distances between each centroid and each output class color
