@@ -15,7 +15,7 @@ pixels = img.reshape(-1, 3)  # Flatten the image, keeping the RGB channels toget
 distances = np.linalg.norm(pixels - np.mean(pixels, axis=1, keepdims=True), axis=1)
 
 # Filter out pixels close to the black-white diagonal
-threshold = 40  # Adjust this value as needed
+threshold = 40  # To be adjusted
 mask = distances > threshold
 pixels = pixels[mask]
 
@@ -27,22 +27,20 @@ r, g, b = unique_pixels[:, 0], unique_pixels[:, 1], unique_pixels[:, 2]
 
 print("Time to reshape and split image: ", cc - bb)
 
-# Normalize RGB values for Plotly (values between 0 and 1)
+# Normalize RGB values for Plotly (range 0 to 1)
 colors = unique_pixels / 255.0
 
-# Create the scatter plot with Plotly
 fig = go.Figure(data=[go.Scatter3d(
     x=r, y=g, z=b,
     mode='markers',
     marker=dict(
         size=np.multiply(np.log(pixels_count), 4),  # Log scale for marker size based on pixel count
-        color=['rgb({}, {}, {})'.format(*pixel) for pixel in unique_pixels],  # Set marker colors
+        color=['rgb({}, {}, {})'.format(*pixel) for pixel in unique_pixels],
         opacity=0.8,
         line=dict(width=0)
     )
 )])
 
-# Set plot axis labels
 fig.update_layout(
     scene=dict(
         xaxis_title='Red',
@@ -54,4 +52,3 @@ fig.update_layout(
 
 # Show the plot
 fig.show()
-# It opens up a new tab in your browser with the 3D scatter plot.
